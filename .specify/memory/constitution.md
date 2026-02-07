@@ -1,55 +1,40 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT
+Version change: N/A -> 1.0.0
+Added sections: All principles and sections as per Todo app requirements
+Removed sections: None
+Templates requiring updates: N/A
+Follow-up TODOs: None
+-->
+
+# Todo App Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Frontend-First Approach
+Prioritize extending and improving the existing frontend; Maintain compatibility with current frontend structure and leverage /lib/api.ts for API calls; Any new features must integrate seamlessly with existing frontend architecture.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Backend Modern Architecture
+Use FastAPI with SQLModel ORM for backend services and Neon Serverless PostgreSQL for database storage; All backend services must follow RESTful principles and maintain clean separation of concerns; Database schema changes must be properly versioned and migrated.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Secure Authentication (NON-NEGOTIABLE)
+Implement Better Auth for user authentication with JWT token validation on all REST endpoints; Every API call must validate JWT tokens issued by Better Auth before processing requests; Unauthorized access attempts must be logged and rejected with appropriate HTTP status codes.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### User Data Isolation
+Ensure users can only access and modify their own tasks and data; All API endpoints must validate that requested resources belong to the authenticated user; Data access controls must be implemented at both application and database levels.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Monorepo Organization
+Organize codebase with separate frontend/ and backend/ directories maintaining clear architectural boundaries; Include CLAUDE.md file at project root with comprehensive project context and development guidelines; All new features must follow established monorepo structure conventions.
 
-### [PRINCIPLE_6_NAME]
+### Full-Stack Integration
+Maintain tight integration between frontend and backend components while preserving loose coupling; All API contracts must be clearly defined and documented; Frontend API calls must handle backend errors gracefully and provide appropriate user feedback.
 
+## Security & Architecture Requirements
+All REST endpoints must require and validate JWTs from Better Auth; Task Management requires full CRUD functionality with proper user ownership validation; Database connections must use secure connection pooling and prepared statements; Input validation must occur at both frontend and backend layers to prevent injection attacks.
 
-[PRINCIPLE__DESCRIPTION]
-
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+Follow Spec-Kit monorepo conventions for code organization and deployment; Implement comprehensive testing strategy covering frontend components and backend API endpoints; Conduct security reviews for all authentication and authorization changes; Maintain backward compatibility for existing API endpoints during feature development.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This constitution governs all development activities for the Todo app; All code changes must comply with security requirements and architectural principles; Amendments require documentation of rationale and impact assessment; Code reviews must verify compliance with all stated principles before merging.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-02-02 | **Last Amended**: 2026-02-02
